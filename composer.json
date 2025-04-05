@@ -1,0 +1,27 @@
+{
+    "name": "your-username/my-laravel-package",
+    "description": "A Laravel package for handling routes",
+    "type": "library",
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/support": "^8.0|^9.0|^10.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0",
+	    "orchestra/testbench": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AirPetr\\LaravelFindRouteHandler\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RouteFindHandlerServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
