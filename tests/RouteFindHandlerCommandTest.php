@@ -3,7 +3,8 @@
 namespace AirPetr\LaravelFindRouteHandler\Tests;
 
 use AirPetr\LaravelFindRouteHandler\Providers\RouteFindHandlerServiceProvider;
-use AirPetr\LaravelFindRouteHandler\Tests\Controllers\TestController;
+use AirPetr\LaravelFindRouteHandler\Tests\SingleActionTestController;
+use AirPetr\LaravelFindRouteHandler\Tests\TestController;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase;
 
@@ -14,23 +15,27 @@ class RouteFindHandlerCommandTest extends TestCase
         return [RouteFindHandlerServiceProvider::class];
     }
 
-    protected function setUp(): void
+    public function testCommandOnClosure(): void
     {
-        parent::setUp();
-
         Route::get('/', fn () => 'Hello, world!');
-        Route::get('/test', [TestController::class, 'index']);
-    }
 
-    public function testCommandOnClosure()
-    {
         $this->artisan('route:find-handler', ['verb' => 'GET', 'uri' => '/'])
             ->expectsOutputToContain('Route is defined in closure ');
     }
 
-    public function testCommandOnController()
+    public function testCommandOnController(): void
     {
+        Route::get('/test', [TestController::class, 'index']);
+
         $this->artisan('route:find-handler', ['verb' => 'GET', 'uri' => '/test'])
-            ->expectsOutputToContain('Controller of route: AirPetr\LaravelFindRouteHandler\Tests\Controllers\TestController@index');
+            ->expectsOutputToContain('Controller of route: AirPetr\LaravelFindRouteHandler\Tests\TestController@index');
+    }
+
+    public function testCommandSingleActionController(): void
+    {
+        Route::get('/single-action-test', SingleActionTestController::class);
+
+        $this->artisan('route:find-handler', ['verb' => 'GET', 'uri' => '/single-action-test'])
+            ->expectsOutputToContain('Controller of route: AirPetr\LaravelFindRouteHandler\Tests\SingleActionTestController');
     }
 }

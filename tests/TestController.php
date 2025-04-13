@@ -1,6 +1,6 @@
 <?php
 
-namespace AirPetr\LaravelFindRouteHandler\Tests\Controllers;
+namespace AirPetr\LaravelFindRouteHandler\Tests;
 
 use Illuminate\Routing\Controller;
 

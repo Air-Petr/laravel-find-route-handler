@@ -12,7 +12,8 @@
     },
     "autoload": {
         "psr-4": {
-            "AirPetr\\LaravelFindRouteHandler\\": "src/"
+            "AirPetr\\LaravelFindRouteHandler\\": "src/",
+            "AirPetr\\LaravelFindRouteHandler\\Tests\\": "tests/"
         }
     },
     "extra": {

@@ -30,6 +30,7 @@ class RouteFindHandlerCommand extends Command
             $this->error("Route '{$uri}' not found for verb '{$verb}'.");
             return;
         }
+
         if ($route->getAction('uses') instanceof \Closure) {
             $reflection = new ReflectionFunction($route->getAction('uses'));
             $file = $reflection->getFileName();
