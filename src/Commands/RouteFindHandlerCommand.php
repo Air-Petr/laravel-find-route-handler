@@ -11,7 +11,7 @@ class RouteFindHandlerCommand extends Command
 {
     protected $signature = 'route:find-handler {verb} {uri}';
     protected $description = 'Show handler of a route';
-    protected Router $router;
+    protected $router;
 
     public function __construct(Router $router)
     {
@@ -35,7 +35,7 @@ class RouteFindHandlerCommand extends Command
             $reflection = new ReflectionFunction($route->getAction('uses'));
             $file = $reflection->getFileName();
             $line = $reflection->getStartLine();
-            var_dump("Route is defined in closure at {$file}:{$line}");
+
             $this->info("Route is defined in closure at {$file}:{$line}");
             return;
         }

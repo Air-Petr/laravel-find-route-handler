@@ -17,7 +17,9 @@ class RouteFindHandlerCommandTest extends TestCase
 
     public function testCommandOnClosure(): void
     {
-        Route::get('/', fn () => 'Hello, world!');
+        Route::get('/', function () {
+            return 'Hello, world!';
+        });
 
         $this->artisan('route:find-handler', ['verb' => 'GET', 'uri' => '/'])
             ->expectsOutputToContain('Route is defined in closure ');
