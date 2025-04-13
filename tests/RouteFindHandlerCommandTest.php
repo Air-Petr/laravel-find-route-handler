@@ -3,14 +3,12 @@
 namespace AirPetr\LaravelFindRouteHandler\Tests;
 
 use AirPetr\LaravelFindRouteHandler\Providers\RouteFindHandlerServiceProvider;
-use AirPetr\LaravelFindRouteHandler\Tests\SingleActionTestController;
-use AirPetr\LaravelFindRouteHandler\Tests\TestController;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase;
 
 class RouteFindHandlerCommandTest extends TestCase
 {
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [RouteFindHandlerServiceProvider::class];
     }
@@ -33,11 +31,19 @@ class RouteFindHandlerCommandTest extends TestCase
             ->expectsOutputToContain('Controller of route: AirPetr\LaravelFindRouteHandler\Tests\TestController@index');
     }
 
-    public function testCommandSingleActionController(): void
+    public function testCommandOnSingleActionController(): void
     {
         Route::get('/single-action-test', SingleActionTestController::class);
 
         $this->artisan('route:find-handler', ['verb' => 'GET', 'uri' => '/single-action-test'])
             ->expectsOutputToContain('Controller of route: AirPetr\LaravelFindRouteHandler\Tests\SingleActionTestController');
+    }
+
+    public function testCommandOnResourceController(): void
+    {
+        Route::resource('/resource-test', ResourceTestController::class);
+
+        $this->artisan('route:find-handler', ['verb' => 'PUT', 'uri' => '/resource-test/1'])
+            ->expectsOutputToContain('Controller of route: AirPetr\LaravelFindRouteHandler\Tests\ResourceTestController@update');
     }
 }
