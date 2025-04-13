@@ -1,6 +1,6 @@
 {
-    "name": "your-username/my-laravel-package",
-    "description": "A Laravel package for handling routes",
+    "name": "air-petr/laravel-find-route-handler",
+    "description": "An Artisan command to find the handler behind any route in your Laravel application.",
     "type": "library",
     "require": {
         "php": "^7.3|^8.0",
@@ -8,7 +8,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
-	    "orchestra/testbench": "^8.0"
+        "orchestra/testbench": "^8.0"
     },
     "autoload": {
         "psr-4": {
@@ -19,10 +19,27 @@
     "extra": {
         "laravel": {
             "providers": [
-                "RouteFindHandlerServiceProvider"
+                "AirPetr\\LaravelFindRouteHandler\\Providers\\RouteFindHandlerServiceProvider"
             ]
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "artisan",
+        "route",
+        "handler",
+        "controller",
+        "closure"
+    ],
+    "homepage": "https://github.com/air-petr/laravel-find-route-handler",
+    "authors": [
+        {
+            "name": "Petr Popov",
+            "email": "ppam90@protonmail.com",
+            "homepage": "https://github.com/air-petr"
+        }
+    ]
 }
