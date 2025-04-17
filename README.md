@@ -1,11 +1,11 @@
-# 🔍 Laravel Route Handler Finder
+# 🔍 Laravel Find Route Handler
 
 An Artisan command to find the handler (controller or closure) behind any route in your Laravel application.
 
 ## 📦 Installation
 
 ```bash
-composer require air-petr/laravel-route-handler-finder --dev
+composer require air-petr/laravel-find-route-handler --dev
 ```
 
 If you're not using Laravel Package Auto-Discovery, you may need to manually register the service provider:
@@ -14,7 +14,7 @@ If you're not using Laravel Package Auto-Discovery, you may need to manually reg
 // config/app.php
 'providers' => [
     // ...
-    AirPetr\RouteHandlerFinder\RouteHandlerFinderServiceProvider::class,
+    AirPetr\LaravelFindRouteHandler\RouteFindHandlerServiceProvider::class,
 ],
 ```
 
